@@ -8,6 +8,7 @@ namespace IsHalfLife3Confirmed.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
+      
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -15,7 +16,12 @@ namespace IsHalfLife3Confirmed.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            Console.WriteLine("Returnerer index"); 
+            DataFetcher fetcher = new DataFetcher();
+            Console.WriteLine("Tidspunkt for henting av data:  " + fetcher.DateOfFetch.ToString("F"));
+            bool confirmed = fetcher.GetData();
+            Console.WriteLine("Er halflife confirmed? " + confirmed); 
+            return View(fetcher);
         }
 
         public IActionResult Privacy()
@@ -25,6 +31,8 @@ namespace IsHalfLife3Confirmed.Controllers
 
         public IActionResult Test()
         {
+            Console.WriteLine("TEst"); 
+
             return View();
         }
 

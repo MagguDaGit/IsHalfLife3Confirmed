@@ -1,8 +1,28 @@
-﻿@{
+﻿@model IsHalfLife3Confirmed.Models.DataFetcher; 
+@{
     ViewData["Title"] = "Home Page";
-}
+    string[] arr = { "Noooope", "That's a negative", "Gaben has not blessed us today", "Gordon still waits", "They are busy getting rich of steam", 
+    "Just like CS:GO anticheat, it is not here yet", "Gambling makes to much money to start on HL3", "Just like your dad, Half-Life 3 still isn't here" };
+    Random rand = new Random();
+    int randomQuote = rand.Next(0, arr.Length); 
 
-<div class="text-center">
-    <h1 class="display-4">Is half-life 3 confirmed? </h1>
-    <h2>unfortunately no...</h2>
-</div>
+    if(@Model.data == false) 
+    {
+        <div class="text-center">
+                <h1 class="display-4">Is half-life 3 confirmed? </h1>
+                <h2><b>No</b></h2>
+                <h2>@arr[randomQuote]</h2>
+                <button onclick="window.location.href = '/home'">Check if Half-Life 3 is confirmed</button>
+        </div>
+    }
+
+    else 
+    {
+        <div class="text-center">
+                <h1 class="display-4">Is half-life 3 confirmed? </h1>
+                <h2>YES</h2>
+                <h2>Halflife IS CONFIRMED! </h2>
+            
+        </div>
+    }
+}
