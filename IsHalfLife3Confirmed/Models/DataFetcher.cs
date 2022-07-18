@@ -21,10 +21,11 @@ namespace IsHalfLife3Confirmed.Models
             return DateTime.Now; 
         }
 
-        public bool GetData()
+        public bool GetData(string inpt_url)
         {
             //Her skal data hentes fra nettet
-            var url = "https://www.ign.com/news";
+            //var url = "https://www.ign.com/news";
+            var url = inpt_url; 
             var web = new HtmlWeb();
             var doc = web.Load(url);    
             var headLines = doc.DocumentNode.SelectNodes("//h3"); 
@@ -37,7 +38,7 @@ namespace IsHalfLife3Confirmed.Models
             foreach (var article in headLines)
             {
                 string s = article.InnerText;
-                numOfMatches = IsConfirmed(s, "Half-life 3", "Half-life 3", "HalfLife 3", "confirmed", "confirmed:", "half life 3");
+                numOfMatches = IsConfirmed(s, "Half-life 3", "HalfLife 3", "confirmed", "confirmed:", "half life 3");
             }
 
             //Hvis to eller flere ord matcher betyr det at artikkelen inneholder 2 ord, half-life og confirmed 
@@ -62,6 +63,8 @@ namespace IsHalfLife3Confirmed.Models
                     numMatch++;
                 }
             }
+            if (l_text.Contains("not confirmed")) numMatch--;
+            if (l_text.Contains("might")) numMatch--;
             return numMatch;
         }
     }

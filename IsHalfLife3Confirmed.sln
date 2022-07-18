@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsHalfLife3Confirmed", "IsHalfLife3Confirmed\IsHalfLife3Confirmed.csproj", "{5AC8C67D-90C4-4963-A106-0877A8CC30D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IsHalfLife3Confirmed", "IsHalfLife3Confirmed\IsHalfLife3Confirmed.csproj", "{5AC8C67D-90C4-4963-A106-0877A8CC30D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IsHalfLife3Confirmed.Tests", "IsHalfLife3Confirmed.Tests\IsHalfLife3Confirmed.Tests.csproj", "{9CC2D1A4-1663-4DDE-8041-B825AAD7F2BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{5AC8C67D-90C4-4963-A106-0877A8CC30D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AC8C67D-90C4-4963-A106-0877A8CC30D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AC8C67D-90C4-4963-A106-0877A8CC30D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CC2D1A4-1663-4DDE-8041-B825AAD7F2BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CC2D1A4-1663-4DDE-8041-B825AAD7F2BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CC2D1A4-1663-4DDE-8041-B825AAD7F2BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CC2D1A4-1663-4DDE-8041-B825AAD7F2BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
