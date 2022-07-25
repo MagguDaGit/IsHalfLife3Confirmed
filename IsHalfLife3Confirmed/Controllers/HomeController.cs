@@ -1,30 +1,33 @@
 ﻿using IsHalfLife3Confirmed.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using System.Diagnostics;
 
 namespace IsHalfLife3Confirmed.Controllers
 {
+   
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-     
-        public HomeController(ILogger<HomeController> logger)
+        public DateTime prevFetchDate = DateTime.Today;
+        private IMemoryCache _cache;
+        
+             
+        public HomeController(ILogger<HomeController> logger, IMemoryCache cache)
         {
+            Console.WriteLine("Initialiserer");
             _logger = logger;
+            _cache = cache;
+            
         }
 
-        public HomeController()
-        {
-        }
 
+       
         public IActionResult Index()
         {
-            Console.WriteLine("Returnerer index"); 
+            
             DataFetcher fetcher = new DataFetcher();
-            Console.WriteLine("Tidspunkt for henting av data:  " + fetcher.DateOfFetch.ToString("F"));
-            bool confirmed = fetcher.GetData("https://www.ign.com/news");
-            Console.WriteLine("Er halflife confirmed? " + confirmed); 
+            checkForFetch(fetcher, fetcher.fetchCycle.lastFetch);
             return View(fetcher);
         }
 
@@ -38,6 +41,21 @@ namespace IsHalfLife3Confirmed.Controllers
             Console.WriteLine("TEst"); 
 
             return View();
+        }
+
+        public void checkForFetch(DataFetcher f, DateTime fetchDato)
+        {
+            
+            Console.WriteLine("Datafetcher opprettelse data: " + f.DateOfFetch +" Forrige fetchCycle: " + fetchDato);
+            if(f.DateOfFetch.DayOfWeek == fetchDato.DayOfWeek)
+            {
+                Console.WriteLine("Henter ikke ny data fra nettside, har alt hentet data idag"); 
+            }  
+            else
+            {
+                Console.WriteLine("Dato fra fetcher opprettet har nyere data en forrige fetch, henter ny data og oppdaterer fetch dato");
+                f.GetData("https://www.ign.com/news"); 
+            }
         }
 
 

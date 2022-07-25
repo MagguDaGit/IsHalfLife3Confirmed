@@ -64,5 +64,23 @@ namespace IsHalfLife3Confirmed.Tests
 
         }
 
+        /* 
+         * Template JSON
+         * 
+           {
+           "lastFetch": "2022-07-23T00:00:00",
+           "numArticles": ""
+           }
+         *
+         */
+
+       [Fact]
+        void TestJsonOverwrite()
+        {
+            DataFetcher fetcher = new();
+            bool velykket = fetcher.fetchCycle.overwritePrevFetchCycle();
+            Assert.True(velykket);
+        }
+
     }
 }
