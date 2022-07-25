@@ -20,6 +20,14 @@ namespace IsHalfLife3Confirmed.Models
             
         }
 
+        public DataFetcher(string date)
+        {
+            DateOfFetch = DateTime.Parse(date);
+            fetchCycle = GetFetchJson();
+
+        }
+
+
         public DateTime GetDate()
         {
 
@@ -35,7 +43,7 @@ namespace IsHalfLife3Confirmed.Models
             var web = new HtmlWeb();
             var doc = web.Load(url);
             var headLines = doc.DocumentNode.SelectNodes("//h3");
-            Console.WriteLine("Antall artikkler hentet: " + headLines.Count);
+            fetchCycle.numArticles = fetchCycle.numArticles + headLines.Count;
 
 
             //Går gjennom alle h3 elementer som er overskrifter på artikkler 
@@ -44,6 +52,7 @@ namespace IsHalfLife3Confirmed.Models
             foreach (var article in headLines)
             {
                 string s = article.InnerText;
+                Console.WriteLine("Artikkel: " + s);
                 numOfMatches = IsConfirmed(s, "Half-life 3", "HalfLife 3", "confirmed", "confirmed:", "half life 3");
             }
 
@@ -94,14 +103,13 @@ namespace IsHalfLife3Confirmed.Models
 
         public class FetchCycle
         {
-            public DateTime lastFetch { get; set; } 
+            public DateTime lastFetch{ get; set; }   
             public int numArticles { get; set; }           
             public string generateJsonTemplate()
             {
-                string json =  "{ \"lastfetch\" : "+ '"'+lastFetch.Day + '"' +", \"numArticles\" : "+numArticles+" }";
+                string json =  "{ \"lastFetch\" : "+ '"'+lastFetch.ToString("yyyy-MM-ddTHH:mm:ss") + '"' +", \"numArticles\" : "+numArticles+" }";
                 return json;
             } 
-
 
             public bool overwritePrevFetchCycle()
             {
@@ -109,9 +117,7 @@ namespace IsHalfLife3Confirmed.Models
                 File.WriteAllText("fetchCycle.json", generateJsonTemplate());
                 return true;
             }
-            
-
-
+           
         }
 
     }

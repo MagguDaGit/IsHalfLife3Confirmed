@@ -3,6 +3,7 @@ using System;
 namespace IsHalfLife3Confirmed.Tests
 
 {
+    [Collection("Sequential")]
     public class ModelTests
     {
         [Fact]  

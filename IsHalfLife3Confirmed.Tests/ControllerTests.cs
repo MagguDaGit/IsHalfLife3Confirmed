@@ -5,6 +5,7 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace IsHalfLife3Confirmed.Tests
 {
+    [Collection("Sequential")]
     public class ControllerTests
          
     {
@@ -24,8 +25,8 @@ namespace IsHalfLife3Confirmed.Tests
             Assert.NotNull(result); 
 
         }
-        [Fact] 
-
+        [Fact]
+        
         public void CheckDateOfFetch()
         {
             //Assert
@@ -36,12 +37,10 @@ namespace IsHalfLife3Confirmed.Tests
             DataFetcher f = new(); 
             //Act
 
-            homeCtrl.checkForFetch(f,DateTime.Today.AddDays(-1));
-
+            
             //Assert
-            DateTime t1 = f.DateOfFetch; 
-            DateTime t2 = homeCtrl.prevFetchDate;
-            Assert.True(t1 == t2);
+            Assert.True(homeCtrl.checkForFetch(f, DateTime.Today.AddDays(-1) ) );
+            Assert.False(homeCtrl.checkForFetch(f, DateTime.Today));  
 
     
         }

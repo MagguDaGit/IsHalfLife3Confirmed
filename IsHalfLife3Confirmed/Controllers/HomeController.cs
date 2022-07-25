@@ -9,7 +9,6 @@ namespace IsHalfLife3Confirmed.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        public DateTime prevFetchDate = DateTime.Today;
         private IMemoryCache _cache;
         
              
@@ -38,23 +37,22 @@ namespace IsHalfLife3Confirmed.Controllers
 
         public IActionResult Test()
         {
-            Console.WriteLine("TEst"); 
-
             return View();
         }
 
-        public void checkForFetch(DataFetcher f, DateTime fetchDato)
+        public bool checkForFetch(DataFetcher f, DateTime fetchDato)
         {
-            
-            Console.WriteLine("Datafetcher opprettelse data: " + f.DateOfFetch +" Forrige fetchCycle: " + fetchDato);
-            if(f.DateOfFetch.DayOfWeek == fetchDato.DayOfWeek)
+            Console.WriteLine("Sjekker om det er nødvendig å hente ny data..."); 
+            if(f.DateOfFetch.Date == fetchDato.Date)
             {
-                Console.WriteLine("Henter ikke ny data fra nettside, har alt hentet data idag"); 
+                Console.WriteLine("Henter ikke ny data fra nettside, har alt hentet data idag");
+                return false;
             }  
             else
             {
                 Console.WriteLine("Dato fra fetcher opprettet har nyere data en forrige fetch, henter ny data og oppdaterer fetch dato");
-                f.GetData("https://www.ign.com/news"); 
+                f.GetData("https://www.ign.com/news");
+                return true; 
             }
         }
 
