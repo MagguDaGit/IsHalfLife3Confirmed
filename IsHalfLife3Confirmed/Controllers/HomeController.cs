@@ -8,6 +8,7 @@ namespace IsHalfLife3Confirmed.Controllers
    
     public class HomeController : Controller
     {
+        //Logger og memory cache er ikke brukt, kan vurdere å slettes
         private readonly ILogger<HomeController> _logger;
         private IMemoryCache _cache;
         
