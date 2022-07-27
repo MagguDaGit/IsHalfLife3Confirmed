@@ -5,6 +5,7 @@ using Microsoft.Extensions.Caching.Memory;
 
 namespace IsHalfLife3Confirmed.Tests
 {
+    //Denne er for å forsikre om at klasser med tester i collection Sequantial vil bli kjørt i sekvens og ikke synkront, dettte gir feil når flere tester vil skrive/lese til samme fil samtidig
     [Collection("Sequential")]
     public class ControllerTests
          
