@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using IsHalfLife3Confirmed.Models; 
 namespace IsHalfLife3Confirmed.Controllers
 {
     
@@ -11,7 +12,8 @@ namespace IsHalfLife3Confirmed.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            DataFetcher fetcher = new DataFetcher(); 
+            return View(fetcher);
         }
     }
 }
