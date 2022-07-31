@@ -15,7 +15,6 @@ namespace IsHalfLife3Confirmed.Controllers
              
         public HomeController(ILogger<HomeController> logger, IMemoryCache cache)
         {
-            Console.WriteLine("Initialiserer");
             _logger = logger;
             _cache = cache;
             
@@ -25,10 +24,8 @@ namespace IsHalfLife3Confirmed.Controllers
        
         public IActionResult Index()
         {
-            
-            DataFetcher fetcher = new DataFetcher();
-            checkForFetch(fetcher, fetcher.fetchCycle.lastFetch);
-            return View(fetcher);
+            FetchData data = new(); 
+            return View(data);
         }
 
         public IActionResult Privacy()
@@ -41,24 +38,7 @@ namespace IsHalfLife3Confirmed.Controllers
             return View();
         }
 
-        public bool checkForFetch(DataFetcher f, DateTime fetchDato)
-        {
-            Console.WriteLine("Sjekker om det er nødvendig å hente ny data..."); 
-            if(f.DateOfFetch.Date == fetchDato.Date)
-            {
-                Console.WriteLine("Henter ikke ny data fra nettside, har alt hentet data idag");
-                return false;
-            }  
-            else
-            {
-                Console.WriteLine("Dato fra fetcher opprettet har nyere data en forrige fetch, henter ny data og oppdaterer fetch dato");
-                f.GetData("https://www.ign.com/news");
-                return true; 
-            }
-        }
-
-
-
+ 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

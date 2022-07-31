@@ -26,26 +26,6 @@ namespace IsHalfLife3Confirmed.Tests
             Assert.NotNull(result); 
 
         }
-        [Fact]
-        
-        public void CheckDateOfFetch()
-        {
-            //Assert
-            var loggerFactory = new LoggerFactory();
-            var logger = loggerFactory.CreateLogger<HomeController>();
-            var cache = new MemoryCache(new MemoryCacheOptions());
-            var homeCtrl = new HomeController(logger,cache);
-            DataFetcher f = new(); 
-            //Act
-
-            
-            //Assert
-            Assert.True(homeCtrl.checkForFetch(f, DateTime.Today.AddDays(-1) ) );
-            Assert.False(homeCtrl.checkForFetch(f, DateTime.Today));  
-
-    
-        }
-
-
+       
     }
 }

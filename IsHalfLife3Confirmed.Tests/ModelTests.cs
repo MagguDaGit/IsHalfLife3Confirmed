@@ -1,4 +1,5 @@
 ﻿using IsHalfLife3Confirmed.Models;
+using IsHalfLife3Confirmed.BackgroundServices;
 using System; 
 namespace IsHalfLife3Confirmed.Tests
 
@@ -7,27 +8,30 @@ namespace IsHalfLife3Confirmed.Tests
     public class ModelTests
     {
         [Fact]  
-        public void Test_DataFetcher() 
+        public void Test_GetNewData() 
         {
             //Arrange
-            var fetcher = new DataFetcher();
-            
-            
-            //Act 
-            var result = fetcher.GetData("https://www.ign.com/news");
+            var fetcher = new Fetcher();
 
+            //Act 
+            var oldDate = fetcher.data.lastFetch;
+            var oldCount = fetcher.data.numArticles;
+            fetcher.GetNewData("https://www.ign.com/news");
+            var newDate = fetcher.data.lastFetch;
+            var newCount = fetcher.data.numArticles;
 
             //Assert
-            Assert.IsType<bool>(result);
+            Assert.False(oldDate == newDate && oldCount == newCount);
         }
+
         [Fact]
         public void Test_GetDate()
         {
             //Arrange
-            var fetcher = new DataFetcher();
+            var fetcher = new Fetcher();
 
             //Act
-            var date = fetcher.DateOfFetch;
+            var date = fetcher.data.lastFetch;
             DateTime thisDay = DateTime.Today;
 
             //Assert
@@ -39,7 +43,7 @@ namespace IsHalfLife3Confirmed.Tests
         public void Test_IsConfirmed()
         {
             //Arrange 
-            var fetcher = new DataFetcher();
+            var fetcher = new Fetcher();
             string[] arguments = { "Half-life 3", "HalfLife 3", "confirmed", "confirmed:", "half life 3" , "Half life 3" }; 
 
             //Act
@@ -78,8 +82,8 @@ namespace IsHalfLife3Confirmed.Tests
        [Fact]
         void TestJsonOverwrite()
         {
-            DataFetcher fetcher = new();
-            bool velykket = fetcher.fetchCycle.overwritePrevFetchCycle();
+            Fetcher fetcher = new();
+            bool velykket = fetcher.WriteNewJSONFile(); 
             Assert.True(velykket);
         }
 
