@@ -16,7 +16,7 @@
             _logger.LogInformation("Timed Hosted Service running.");
 
             _timer = new Timer(DoWork, null, TimeSpan.Zero,
-                TimeSpan.FromSeconds(10));
+                TimeSpan.FromDays(1));
 
             return Task.CompletedTask;
         }

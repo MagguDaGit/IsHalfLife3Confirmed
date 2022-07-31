@@ -1,4 +1,5 @@
 ﻿using IsHalfLife3Confirmed.Models;
+using IsHalfLife3Confirmed.BackgroundServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using System.Diagnostics;
@@ -12,7 +13,7 @@ namespace IsHalfLife3Confirmed.Controllers
         private readonly ILogger<HomeController> _logger;
         private IMemoryCache _cache;
         
-             
+                    
         public HomeController(ILogger<HomeController> logger, IMemoryCache cache)
         {
             _logger = logger;
@@ -24,7 +25,8 @@ namespace IsHalfLife3Confirmed.Controllers
        
         public IActionResult Index()
         {
-            FetchData data = new(); 
+            Fetcher fetcher = new(); 
+            FetchData data = fetcher.data; 
             return View(data);
         }
 
