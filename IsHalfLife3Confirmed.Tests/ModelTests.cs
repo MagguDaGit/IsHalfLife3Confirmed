@@ -36,7 +36,7 @@ namespace IsHalfLife3Confirmed.Tests
 
             //Assert
             Assert.IsType<DateTime>(date);
-            Assert.Equal(thisDay.Day, date.Day);
+            
         }
 
         [Fact]
