@@ -25,23 +25,18 @@
         {
             var count = Interlocked.Increment(ref executionCount);
             Fetcher fetcher = new Fetcher();
-            if(DateTime.Today == fetcher.data.lastFetch )
+            if(DateTime.Today == fetcher.data.lastFetch)
             {
                 Console.WriteLine("Skriver ikke til fil, har alt sjekket idag"); 
+            }
+            else if (fetcher.data.confirmed){
+                Console.WriteLine("Half life er confirmed, trenger ikke lete etter flere artikkler"); 
             }
             else
             {
                 fetcher.GetNewData("https://www.ign.com/news");
-                fetcher.WriteNewJSONFile();                   
             }
-            _logger.LogInformation("Timed Hosted Service is working. Count: {Count}", count);
-
-            if(!fetcher.data.confirmed)
-            {
-                fetcher.GetNewData("https://www.ign.com/news");
-                fetcher.WriteNewJSONFile(); 
-                _logger.LogInformation("Timed Hosted Service is working. Count: {Count}", count);
-            }      
+            _logger.LogInformation("Timed Hosted Service is working. Count: {Count}", count);   
         }
 
         public Task StopAsync(CancellationToken stoppingToken)
