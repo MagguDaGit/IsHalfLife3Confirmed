@@ -75,7 +75,9 @@ namespace IsHalfLife3Confirmed.BackgroundServices
         {
             try
             {
+                Console.WriteLine("Skriver til JSON fil..."); 
                 string json = JsonSerializer.Serialize<FetchData>(data);
+                Console.WriteLine("Nytt filinnhold: \n" + json); 
                 File.WriteAllText("fetchCycle.json",json);
                 return true; 
             }

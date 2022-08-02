@@ -25,9 +25,17 @@
         {
             var count = Interlocked.Increment(ref executionCount);
             Fetcher fetcher = new Fetcher();
-            fetcher.GetNewData("https://www.ign.com/news");
-            fetcher.WriteNewJSONFile(); 
-            _logger.LogInformation("Timed Hosted Service is working. Count: {Count}", count);            
+            if(DateTime.Today == fetcher.data.lastFetch )
+            {
+                Console.WriteLine("Skriver ikke til fil, har alt sjekket idag"); 
+            }
+            else
+            {
+                fetcher.GetNewData("https://www.ign.com/news");
+                fetcher.WriteNewJSONFile();                   
+            }
+            _logger.LogInformation("Timed Hosted Service is working. Count: {Count}", count);
+
         }
 
         public Task StopAsync(CancellationToken stoppingToken)
