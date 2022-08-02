@@ -1,7 +1,7 @@
-﻿@model IsHalfLife3Confirmed.Models.DataFetcher; 
+﻿@model IsHalfLife3Confirmed.Models.FetchData; 
 @{
     ViewData["Title"] = "Home Page";
-    if (@Model.data == false)
+    if (@Model.confirmed== false)
     {
     
     <div class="text-center">
@@ -15,8 +15,8 @@
     else
     {
     <div class="text-center">
-                    <h1 class="display-4">Is half-life 3 confirmed? </h1>
-                <h2>YES</h2>
+                <h1 class="display-4">Is half-life 3 confirmed? </h1>
+                <h2 id="quote">YES</h2>
                 <h2>Halflife IS CONFIRMED! </h2>            
     </div>
     }

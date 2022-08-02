@@ -1,13 +1,11 @@
-﻿@model IsHalfLife3Confirmed.Models.DataFetcher; 
+﻿@model IsHalfLife3Confirmed.Models.FetchData; 
 @{
     ViewData["Title"] = "About";
 
 }
-
-
 <h1>About this site </h1>
 <h2> This site is dedicated to bring you hard hitting facts related to the status of Half-Life 3's release </h2>
-<h3> So far @Model.fetchCycle.numArticles articles has been looked through</h3>
+<h3> So far @Model.numArticles articles has been looked through</h3>
 
 
 
