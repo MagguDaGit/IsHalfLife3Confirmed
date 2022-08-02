@@ -1,23 +1,23 @@
 ﻿@model IsHalfLife3Confirmed.Models.FetchData; 
 @{
     ViewData["Title"] = "Home Page";
-    if (@Model.confirmed== false)
+    Console.WriteLine(@Model.ToString());
+    if (@Model.confirmed == false)
     {
-    
     <div class="text-center">
-                    <h1 class="display-4">Is Half-Life 3 Confirmed? </h1>
-                    <h2 id="quote">Nope</h2>          
-                    <button onclick="SetQuote();Animate()">Check if Half-Life 3 is confirmed</button>
-                    <p>Check again tomorrow, might be a different result </p>
-    </div>
-    <script src="~/js/animations.js" type="text/javascript"></script>    
+        <h1 class="display-4">Is Half-Life 3 Confirmed? </h1>
+        <h2 id="quote">Nope</h2>          
+        <button onclick="SetQuote();Animate()">Check if Half-Life 3 is confirmed</button>
+        <p>Check again tomorrow, might be a different result </p>
+    </div> 
     }
     else
     {
     <div class="text-center">
-                <h1 class="display-4">Is half-life 3 confirmed? </h1>
-                <h2 id="quote">YES</h2>
-                <h2>Halflife IS CONFIRMED! </h2>            
+        <h1 class="display-4">Is Half-Life 3 Confirmed? </h1>
+        <h2 id="confirmed">YES</h2>
+        <h2>Half-Life 3 IS CONFIRMED! </h2>            
     </div>
+  
     }
 }

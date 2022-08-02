@@ -26,7 +26,8 @@ namespace IsHalfLife3Confirmed.Controllers
         public IActionResult Index()
         {
             Fetcher fetcher = new(); 
-            FetchData data = fetcher.data; 
+            FetchData data = fetcher.data;
+            Console.WriteLine("Er det bekreftet?  " + data.confirmed); 
             return View(data);
         }
 
